@@ -13,15 +13,16 @@ export const getS3Client = () => {
     process.env.NEXT_PRIVATE_UPLOAD_SECRET_ACCESS_KEY;
 
   return new S3Client({
+    forcePathStyle: true, // when using supabase storage
     endpoint: process.env.NEXT_PRIVATE_UPLOAD_ENDPOINT || undefined,
     region: process.env.NEXT_PRIVATE_UPLOAD_REGION || "eu-central-1",
     credentials: hasCredentials
       ? {
-          accessKeyId: String(process.env.NEXT_PRIVATE_UPLOAD_ACCESS_KEY_ID),
-          secretAccessKey: String(
-            process.env.NEXT_PRIVATE_UPLOAD_SECRET_ACCESS_KEY,
-          ),
-        }
+        accessKeyId: String(process.env.NEXT_PRIVATE_UPLOAD_ACCESS_KEY_ID),
+        secretAccessKey: String(
+          process.env.NEXT_PRIVATE_UPLOAD_SECRET_ACCESS_KEY,
+        ),
+      }
       : undefined,
   });
 };

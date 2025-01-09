@@ -89,7 +89,7 @@ model Team {
 
   incomingWebhooks IncomingWebhook[]
   restrictedTokens RestrictedToken[]
-  webhooks       Webhook[]
+  webhooks         Webhook[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -695,15 +695,15 @@ model RestrictedToken {
 }
 
 model Webhook {
-  id         String    @id @default(cuid())
-  pId        String    @unique // public ID for the webhook
-  name       String
-  url        String
-  secret     String // signing secret for the webhook
-  triggers   Json
+  id       String @id @default(cuid())
+  pId      String @unique // public ID for the webhook
+  name     String
+  url      String
+  secret   String // signing secret for the webhook
+  triggers Json
 
-  teamId     String
-  team       Team      @relation(fields: [teamId], references: [id], onDelete: Cascade)
+  teamId String
+  team   Team   @relation(fields: [teamId], references: [id], onDelete: Cascade)
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -711,12 +711,11 @@ model Webhook {
   @@index([teamId])
 }
 
-
 model YearInReview {
-  id String @id @default(cuid())
-  teamId String
-  status        String   @default("pending") // pending, processing, completed, failed
-  attempts      Int      @default(0)
+  id            String    @id @default(cuid())
+  teamId        String
+  status        String    @default("pending") // pending, processing, completed, failed
+  attempts      Int       @default(0)
   lastAttempted DateTime?
   error         String?
 
