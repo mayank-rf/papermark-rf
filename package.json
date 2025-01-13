@@ -155,7 +155,7 @@
     "typescript": "^5"
   },
   "trigger.dev": {
-    "endpointId": "papermark-dev-Ojwu"
+    "endpointId": "papermark-rf"
   },
   "overrides": {
     "react-notion-x": {
