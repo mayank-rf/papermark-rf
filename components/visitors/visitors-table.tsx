@@ -60,10 +60,16 @@ import {
 } from "../ui/pagination";
 import { VisitorAvatar } from "./visitor-avatar";
 import VisitorChart from "./visitor-chart";
+import VisitorClicks from "./visitor-clicks";
 import VisitorUserAgent from "./visitor-useragent";
 import VisitorUserAgentPlaceholder from "./visitor-useragent-placeholder";
+import VisitorVideoChart from "./visitor-video-chart";
 
-export default function VisitorsTable() {
+export default function VisitorsTable({
+  isVideo = false,
+}: {
+  isVideo?: boolean;
+}) {
   const teamInfo = useTeam();
   const teamId = teamInfo?.currentTeam?.id;
   const [currentPage, setCurrentPage] = useState<number>(1);
@@ -115,6 +121,8 @@ export default function VisitorsTable() {
     );
     setIsLoading(false);
   };
+
+  console.log(views);
 
   return (
     <div className="w-full">
@@ -403,12 +411,27 @@ export default function VisitorsTable() {
                                   Version {view.versionNumber}
                                 </div>
                               </div>
-                              <VisitorChart
-                                documentId={view.documentId!}
-                                viewId={view.id}
-                                totalPages={view.versionNumPages}
-                                versionNumber={view.versionNumber}
-                              />
+                              {isVideo ? (
+                                <VisitorVideoChart
+                                  documentId={view.documentId!}
+                                  viewId={view.id}
+                                  teamId={view.teamId!}
+                                />
+                              ) : (
+                                <VisitorChart
+                                  documentId={view.documentId!}
+                                  viewId={view.id}
+                                  totalPages={view.versionNumPages}
+                                  versionNumber={view.versionNumber}
+                                />
+                              )}
+                              {!isFreePlan ? (
+                                <VisitorClicks
+                                  teamId={view.teamId!}
+                                  documentId={view.documentId!}
+                                  viewId={view.id}
+                                />
+                              ) : null}
                             </TableCell>
                           </TableRow>
                         </>
