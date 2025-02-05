@@ -30,9 +30,13 @@ type DataroomFolderWithDocuments = DataroomFolder & {
   }[];
 };
 
-type FolderPath = Set<string> | null
+type FolderPath = Set<string> | null;
 
-function findFolderPath(folder: DataroomFolderWithDocuments, folderId: string, currentPath: Set<string> = new Set<string>()):FolderPath {
+function findFolderPath(
+  folder: DataroomFolderWithDocuments,
+  folderId: string,
+  currentPath: Set<string> = new Set<string>(),
+): FolderPath {
   if (folder.id === folderId) {
     return currentPath.add(folder.id);
   }
@@ -52,7 +56,7 @@ const FolderComponent = memo(
     folder,
     folderId,
     setFolderId,
-    folderPath
+    folderPath,
   }: {
     folder: DataroomFolderWithDocuments;
     folderId: string | null;
@@ -90,9 +94,9 @@ const FolderComponent = memo(
     );
 
     const isActive = folder.id === folderId;
-    const isChildActive = folderPath?.has(folder.id) || folder.childFolders.some(
-      (childFolder) => childFolder.id === folderId,
-    );
+    const isChildActive =
+      folderPath?.has(folder.id) ||
+      folder.childFolders.some((childFolder) => childFolder.id === folderId);
 
     return (
       <div
@@ -149,7 +153,7 @@ const SidebarFolders = ({
     }
 
     return null;
-  }, [folders, documents, folderId])
+  }, [folders, documents, folderId]);
 
   return (
     <FileTree>

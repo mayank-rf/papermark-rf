@@ -66,7 +66,7 @@ export default function Register() {
           }}
         >
           <Input
-            className=" border-4"
+            className="border-4"
             placeholder="jsmith@company.co"
             value={email}
             onChange={(e) => setEmail(e.target.value)}

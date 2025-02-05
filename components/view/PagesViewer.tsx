@@ -313,8 +313,9 @@ export default function PagesViewer({
                   return (
                     <img
                       key={index}
-                      className={`mx-auto object-contain ${pageNumber - 1 === index ? "block" : "hidden"
-                        }`}
+                      className={`mx-auto object-contain ${
+                        pageNumber - 1 === index ? "block" : "hidden"
+                      }`}
                       src={
                         loadedImages[index]
                           ? page.file
@@ -329,8 +330,9 @@ export default function PagesViewer({
                 return (
                   <Image
                     key={index}
-                    className={`mx-auto object-contain ${pageNumber - 1 === index ? "block" : "hidden"
-                      }`}
+                    className={`mx-auto object-contain ${
+                      pageNumber - 1 === index ? "block" : "hidden"
+                    }`}
                     src={loadedImages[index] ? page.file : BlankImg}
                     alt={`Page ${index + 1}`}
                     priority={loadedImages[index] ? true : false}
