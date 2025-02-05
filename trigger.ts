@@ -15,7 +15,7 @@ export function getTriggerClient(): TriggerClient | null {
   }
 
   const client = new TriggerClient({
-    id: "papermark-dev-Ojwu",
+    id: "papermark-rf",
     apiKey: process.env.TRIGGER_API_KEY,
     apiUrl: process.env.TRIGGER_API_URL,
   });

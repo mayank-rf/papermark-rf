@@ -58,3 +58,5 @@ lib/emails/marketing
 
 # trigger.dev
 .trigger
+
+.venv
